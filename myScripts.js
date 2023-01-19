@@ -11,7 +11,10 @@ function getComputerChoice() {
 }
 
 // Write a function that plays a single round of Rock Paper Scissors
-// The function should return a string that declares the winner
+// This version has a counter for if the user wins or if the computer wins
+// If neither wins, the function reports that the result was a tie
+let countPlayer = 0;
+let countComputer = 0;
 function playRound(playerSelection, computerSelection) {
     let p = capitalize(playerSelection);
     let c = computerSelection;
@@ -19,9 +22,13 @@ function playRound(playerSelection, computerSelection) {
         return "Tie! Play again.";
     } else {
         if ((p === "Rock" && c === "Scissors") || (p === "Paper" && c === "Rock") || (p === "Scissors" && c === "Paper")) {
-            return `You Win! ${p} beats ${c}`;
+            countPlayer++;
+            return countPlayer;
+            return countComputer;
         } else {
-            return `You Lose! ${c} beats ${p}`;
+            countComputer++;
+            return countPlayer;
+            return countComputer;
         }
     }
 }
@@ -34,8 +41,25 @@ function capitalize(word) {
 }
 
 // The function should take two parameters playerSelection and computerSelection
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
+let playerSelection;
+let computerSelection;
 
-console.log(getComputerChoice());
-console.log(playRound(playerSelection, computerSelection));
+// Make a new function called game(). Call the playRound function inside of this one for a 5-round game
+// This function prompts the user to input their choice
+// The game should keep score and report a winner or loser at the end
+function game() {
+    for (let i = 0; i < 5; i++) {
+        playerSelection = prompt("Rock, Paper, or Scissors: ");
+        computerSelection = getComputerChoice();
+        playRound(playerSelection, computerSelection);
+        console.log(countPlayer);
+        console.log(countComputer);
+        console.log(`Computer: ${computerSelection}`);
+    }
+    if (countPlayer > countComputer) {
+        return "You Win!";
+    } else {
+        return "You Lose!";
+    }
+}
+console.log(game());
