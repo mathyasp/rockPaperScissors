@@ -21,7 +21,9 @@ function playRound(playerSelection, computerSelection) {
     if (p === c) {
         return "Tie! Play again.";
     } else {
-        if ((p === "Rock" && c === "Scissors") || (p === "Paper" && c === "Rock") || (p === "Scissors" && c === "Paper")) {
+        if ((p === "Rock" && c === "Scissors") || 
+            (p === "Paper" && c === "Rock") || 
+            (p === "Scissors" && c === "Paper")) {
             countPlayer++;
             return countPlayer;
             return countComputer;
